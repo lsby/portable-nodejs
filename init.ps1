@@ -1,5 +1,5 @@
 param (
-    [string]$selectedMatch  # 用于接收指定的版本
+    [string]$selectedMatch = $env:ONE_CLICK_RUN_PORTABLE_NODEJS_SELECTEDMATCH
 )
 
 $ErrorActionPreference = "Stop"
@@ -7,7 +7,7 @@ $ErrorActionPreference = "Stop"
 # 如果没有传入版本，则获取可选版本并弹出选择界面
 if (-not $selectedMatch) {
     Write-Output "获取可选择的版本..."
-    $url = "https://github.com/lsby/portable-nodejs/releases/expanded_assets/nodejs"
+    $url = "https://github.com/one-click-run/portable-nodejs/releases/expanded_assets/nodejs"
     $response = Invoke-WebRequest -Uri $url
     $htmlContent = $response.Content
     $pattern = 'node-(.*?)-win-x64.zip'
@@ -31,8 +31,8 @@ Write-Output "用户选择了: $selectedMatch"
 
 # 下载
 Write-Output "开始下载..."
-$downloadUrl = "https://github.com/lsby/portable-nodejs/releases/download/nodejs/$selectedMatch"
-$localFileName = "lsby-portable-nodejs.zip"
+$downloadUrl = "https://github.com/one-click-run/portable-nodejs/releases/download/nodejs/$selectedMatch"
+$localFileName = "OCR-portable-nodejs.zip"
 Invoke-WebRequest -Uri $downloadUrl -OutFile $localFileName
 Write-Output "下载完成..."
 
@@ -56,10 +56,10 @@ Remove-Item -Path $nodeFolder -Force -Recurse
 # 创建进入环境文件
 $scriptContent = @"
 @echo off
-start cmd /k "set PATH=%CD%\lsby-portable-nodejs;%PATH%"
+start cmd /k "set PATH=%CD%\OCR-portable-nodejs;%PATH%"
 "@
 $scriptPath = $PWD.Path
-$scriptFilePath = Join-Path $scriptPath "lsby-portable-nodejs-进入nodejs环境.cmd"
+$scriptFilePath = Join-Path $scriptPath "OCR-portable-nodejs.cmd"
 [System.IO.File]::WriteAllLines($scriptFilePath, $scriptContent)
 
 Write-Output "完成"

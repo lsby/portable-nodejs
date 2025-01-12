@@ -10,12 +10,18 @@
 
 ## 使用
 
-在你希望创建环境的目录用 PowerShell 执行:
+在希望创建环境的目录用 PowerShell 执行:
 
 ```
-irm "https://raw.githubusercontent.com/lsby/portable-nodejs/main/init.ps1" | iex
+irm "https://raw.githubusercontent.com/one-click-run/portable-nodejs/main/init.ps1" | iex
 ```
 
-## 细节
+也可以直接指定版本:
 
-nodejs 官方提供了独立二进制文件分发, 本仓库提供的 zip 文件为官方文件的副本.
+```
+$env:ONE_CLICK_RUN_PORTABLE_NODEJS_SELECTEDMATCH = 'node-v22.13.0-win-x64.zip'; irm 'https://raw.githubusercontent.com/one-click-run/portable-nodejs/main/init.ps1' | iex
+```
+
+## 说明
+
+nodejs 官方提供了独立二进制文件分发, 本仓库提供的 zip 文件为官方分发的副本.
