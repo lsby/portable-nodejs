@@ -25,3 +25,5 @@ $env:ONE_CLICK_RUN_PORTABLE_NODEJS_SELECTEDMATCH = 'node-v22.13.0-win-x64.zip'; 
 ## 说明
 
 nodejs 官方提供了独立二进制文件分发, 本仓库提供的 zip 文件为官方分发的副本.
+
+如果你不信任我提供的文件, 可以在这里下载: https://nodejs.org/en/download.
